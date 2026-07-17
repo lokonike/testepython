@@ -1,0 +1,13 @@
+apiVersion: image.openshift.io/v1 #api utilizada pelo imagestream
+
+kind: ImageStream #tipo de objeto que será criado
+
+metadata: #informções de identificação do objeto
+
+  name: testepython #nome do objeto que sera usado pelo BuildConfig e DeploymentConfig
+
+spec: #Configurações do image stream
+
+  lookupPolicy: #define como o openshift resolvera referencias para imagens
+
+    local: false #utiliza comportamento padrão

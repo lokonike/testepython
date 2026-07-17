@@ -1,0 +1,30 @@
+apiVersion: apps.openshift.io/v1 #api usada no deplymentconfig
+kind: DeploymentConfig #tipo de objeto a ser criado
+
+metadata: #informações de identificação do deploymentconfig
+  name: testepython #nome do deplyment
+
+spec: #configurações do deploymentconfig
+  replicas: 1 #quantidade de pods em execução
+
+  selector: #quais pods pertencem ao deploymentconfig
+    app: testepython #todos pods com essa label serão gerenciados
+
+  template: #modelo utilizado para criar novos pods
+    metadata: #informações do pod
+      labels: #adicionadas automaticamente aos pods criados
+        app: testepython
+
+    spec: #configurações do pod
+      containers: #lista de containers existentes dentro do pod
+        - name: testepython #nome do container
+          image: image-registry.openshift-image-registry.svc:5000/testepython/testepython:latest
+          ports: #lista de portas utilizadas pelo container
+            - containerPort: 8080
+
+  triggers: #define quando um deployment acontece
+    - type: ConfigChange # executa um novo deployment quando o deploymentconfig é alterado
+    - type: ImageChange # executa um novo deployment quando uma nova imagem é detectada
+
+  strategy: #utilizado para atualizar os pods
+    type: Rolling #atualiza os pods de forma gradual, evitando indisponibilidade do serviço

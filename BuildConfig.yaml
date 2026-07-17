@@ -1,5 +1,5 @@
 apiVersion: build.openshift.io/v1 #api usada pelo recurso
-kind: BuildConfig #rescurso exclusivo do openshift para criar builds de imagens
+kind: BuildConfig #recurso exclusivo do openshift para criar builds de imagens
 
 metadata: #informações de identificação do objeto
   name: testepython #nome do buildconfig dentro do cluster
@@ -8,24 +8,24 @@ spec: #Configuração do buildconfig
   source: #definição de onde vira o condigo fonte
     type: Git #codigo vira de um git
     git:
-      uri: https://github.com/ #url do repositorio
+      uri: https://github.com/lokonike/testepython.git #url do repositorio
       ref: main #branch do repositorio
 
-strategy: #estrategias para criar imagem
-  type: Docker #sera usado um dockerfile
-  dockerStrategy: 
-    dockerfilePath: Dockerfile #caminho do docker dentro do repositorio
+  strategy: #estrategias para criar imagem
+    type: Docker #sera usado um dockerfile
+    dockerStrategy:
+      dockerFilePath: Dockerfile #caminho do docker dentro do repositorio
 
-output: #onde a imagem construida sera enviada 
-  to: 
-    kind: ImageStreamTag #destino 
-    name: testepython:latest  #nome da imagem e da tag que serão criadas 
+  output: #onde a imagem construida sera enviada
+    to:
+      kind: ImageStreamTag #destino
+      name: testepython:latest #nome da imagem e da tag que serão criadas
 
-triggers: #define quando novos builds serão iniciados
+  triggers: #define quando novos builds serão iniciados
     - type: ConfigChange #inicia um novo build caso a configuração seja alterada
-    - type: ImageChange  #inicia um novo build caso a imagem seja alterada
+    - type: ImageChange #inicia um novo build caso a imagem seja alterada
 
-runPolicy: Serial #define a execução de builds em serie, ou seja, um build por vez
+  runPolicy: Serial #define a execução de builds em serie, ou seja, um build por vez
 
-successfulBuildsHistoryLimit: 5 #ultimos 5 builds de sucesso de backup
-failedBuildsHistoryLimit: 5 #ultimos 5 builds de falha de backup
+  successfulBuildsHistoryLimit: 5 #ultimos 5 builds de sucesso de backup
+  failedBuildsHistoryLimit: 5 #ultimos 5 builds de falha de backup

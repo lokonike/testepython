@@ -1,17 +1,17 @@
-FROM python:3.11-slim 
+FROM python:3.11-slim
 #imagem base para construir nossa imagem
 
 WORKDIR /app
 #defino o app como diretorio de trabalho do container
 
-COPY . /app
-#copia os arquivos da app do projeto para a app da imagem
+COPY app/ .
+#copia os arquivos da pasta app do projeto para a pasta app da imagem
 
 RUN pip install --no-cache-dir -r requirements.txt
-#instala as dependencias do projeto 
+#instala as dependencias do projeto
 
 EXPOSE 8080
 #mostra que vai usar a porta 8080
 
-CMD ["python", "app.py"] 
+CMD ["python", "app.py"]
 #comando quando o container for iniciado, vai rodar o arquivo app.py

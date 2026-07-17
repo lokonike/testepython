@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1 #api utilizada pelo route
+kind: Route #tipo de objeto que sera criado
+
+metadata: #informações de identificação 
+  name: testepython #nome do route
+
+spec: #configurações do route
+  to: #define para qual recurso a route vai enviar requisições 
+    kind: Service #destino é um service
+    name: testepython #nome do service de destino
+
+  port: #porta utilizada para acessar o service 
+    targetPort: 80 #deve existir no service
+
+  tls: null
