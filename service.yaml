@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+#versão da API e criação de objeto do tipo serviço
+
+metadata:
+  name: testepython
+#informações de identificação do serviço e nome do service 
+
+  spec: 
+    selector:
+      app: testepython
+#configurações do service, define quais pods pertencem ao service e seleciona os pods com o label app=testepython
+
+ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+#lista de portas que o serviço expõe, define a porta do serviço e a porta do pod para onde o tráfego será encaminhado
+
+type: ClusterIP
+#torno o serviço acessivel apenas para o cluster
