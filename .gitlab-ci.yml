@@ -1,17 +1,23 @@
+stages:
+  - test
+  - build
+  - deploy
+
 executar_teste:
+  stage: test
   before_script:
     - echo "Preparando testes..."
-
   script:
     - echo "Executando testes..."
-
   after_script:
-    - echo "apagando arquivos temporários..."
+    - echo "Apagando arquivos temporários..."
 
 criar_imagens:
+  stage: build
   script:
     - echo "Criando as imagens..."
 
 push_imagens:
+  stage: deploy
   script:
     - echo "Realizando upload das imagens..."
