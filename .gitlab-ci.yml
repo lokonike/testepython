@@ -24,10 +24,15 @@ criar_imagens:
 
   script:
     - echo "Criando as imagens..."
+    - pwd
+    - ls
+    - cat /etc/os-release
+    - mkdir pipeline
+    - ls
 
 push_imagens:
   needs:
-    - criar_imagens
+    - criar_imagens 
   stage: build
   script:
     - echo "Realizando upload das imagens..."
