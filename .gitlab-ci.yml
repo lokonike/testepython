@@ -26,6 +26,8 @@ criar_imagens:
     - echo "Criando as imagens..."
 
 push_imagens:
+  needs:
+    - criar_imagens
   stage: build
   script:
     - echo "Realizando upload das imagens..."
