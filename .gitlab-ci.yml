@@ -16,8 +16,6 @@ executar_teste:
 
 executar_teste2:
   stage: testes
-  only:
-    - main
   script:    
     - echo "Executando testes 2..."
 
