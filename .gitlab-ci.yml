@@ -16,10 +16,14 @@ executar_teste:
 
 executar_teste2:
   stage: testes
+  only:
+    - main
   script:    
     - echo "Executando testes 2..."
 
 criar_imagens:
+  only:
+    - main
   stage: build
 
   script:
@@ -31,6 +35,8 @@ criar_imagens:
     - ls
 
 push_imagens:
+  only:
+    - main
   needs:
     - criar_imagens 
   stage: build
@@ -38,6 +44,8 @@ push_imagens:
     - echo "Realizando upload das imagens..."
 
 kubernetes:
+  only:
+    - main
   stage: deploy
   script:
     - echo "Executando deploy..."
