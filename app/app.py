@@ -8,3 +8,5 @@ def home(): #função executada quando alguem apertar '/'
 
 if __name__ == '__main__': #roda o codigo so quando appy for iniciado
     app.run(host="0.0.0.0", port=8080) #inicia o servidor flask
+
+
